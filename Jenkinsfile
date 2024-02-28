@@ -2,7 +2,12 @@ pipeline {
     agent any
     stages {
         stage("BuildTesting") {
-            agent { dockerfile true }
+            agent { 
+                dockerfile {
+                    filename 'Dockerfile'
+                    label 'testingimage'
+                } 
+            }
             steps {
                 echo "python --version"
             }
