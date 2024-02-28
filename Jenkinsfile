@@ -5,7 +5,7 @@ pipeline {
             agent { 
                 dockerfile {
                     filename 'Dockerfile'
-                    label 'testingimage'
+                    args '-t TestImage'
                 } 
             }
             steps {
