@@ -2,8 +2,9 @@ pipeline {
     agent any
     stages {
         stage("BuildTesting") {
+            agent { dockerfile true }
             steps {
-                echo "Hello, testing"
+                echo "python --version"
             }
         }
         stage("CheckStaticCode") {
