@@ -3,13 +3,10 @@ pipeline {
     stages {
         stage("BuildTesting") {
             agent { 
-                dockerfile {
-                    filename 'Dockerfile'
-                    args '-t TestImage'
-                } 
+                dockerfile true 
             }
             steps {
-                echo "python --version"
+                sh "python --version"
             }
         }
         stage("CheckStaticCode") {
