@@ -1,26 +1,26 @@
 pipeline {
-  agent any
-  stages {
-    stage("BuildTesting") {
-       steps {
-          echo "Hello, testing"
-       }
-    },
-    stage("CheckStaticCode") {
-       steps {
-          echo "Hello, CheckStaticCode!"
-       }
-    },
-    stage("RunUnitaryTest") {
-       steps {
-          echo "Hello, RunUnitaryTest!"
-       }
-    },
-    stage("BuildPreprod") {
-       steps {
-          echo "Hello, BuildPreprod!"
-       }
-    },
+    agent any
+    stages {
+        stage("BuildTesting") {
+            steps {
+                echo "Hello, testing"
+            }
+        },
+        stage("CheckStaticCode") {
+            steps {
+                echo "Hello, CheckStaticCode!"
+            }
+        },
+        stage("RunUnitaryTest") {
+            steps {
+                echo "Hello, RunUnitaryTest!"
+            }
+        },
+        stage("BuildPreprod") {
+            steps {
+                echo "Hello, BuildPreprod!"
+            }
+        },
     stage("IntegrationTest") {
        steps {
           echo "Hello, IntegrationTest!"
@@ -40,6 +40,6 @@ pipeline {
        steps {
           echo "Hello, UAT Deploy!"
        }
-    },
- }
+    }
+    }
 }
