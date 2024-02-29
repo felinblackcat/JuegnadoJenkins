@@ -4,7 +4,7 @@ from fastapi import FastAPI
 
 app = FastAPI()
 
-# pytest --cov=. | grep TOTAL | grep -o '[0-9]\+%'
+# pytest --cov=. --cov-fail-under=90
 @app.get("/")
 def read_root():
     return {"Hello": "World"}
