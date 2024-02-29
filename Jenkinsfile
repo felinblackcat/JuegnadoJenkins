@@ -1,10 +1,10 @@
 node {
     stage("BuildTesting") {
         def customImage = docker.build("juegnadojenkins:latest")
-        docker.image("juegnadojenkins").withRun {c ->
+        customImage.inside {
             sh "pytest --junitxml=./test.xml --cov=. --cov-fail-under=90 | grep TOTAL| awk '{ print \$4 }'"
         }
-        sh "docker logs ${c.id}"
+        sh "docker logs ${customImage.id}"
         
     }
     stage("CheckStaticCode") {
