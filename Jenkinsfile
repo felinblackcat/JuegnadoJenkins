@@ -2,7 +2,7 @@ node {
     stage("BuildTesting") {
         def customImage = docker.build("juegnadojenkins:latest")
         customImage.inside {
-            sh 'pytest --cov=. --cov-fail-under=90'
+            sh "pytest --junitxml=./test.xml --cov=. --cov-fail-under=90 | grep TOTAL| awk '{ print $4 }'"
         }
     }
     stage("CheckStaticCode") {
