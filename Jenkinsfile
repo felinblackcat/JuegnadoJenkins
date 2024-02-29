@@ -6,7 +6,7 @@ pipeline {
                 dockerfile true 
             }
             steps {
-                sh "pytest --cov=. | grep TOTAL | grep -o '[0-9]\+%'"
+                sh "pytest --cov=."
             }
         }
         stage("CheckStaticCode") {
