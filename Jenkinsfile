@@ -8,6 +8,11 @@ pipeline {
             steps {
                 def python_version = sh "python --version"
             }
+            post {
+                always {
+                    junit 'build/reports/**/*.xml'
+                }
+            }
         }
         stage("CheckStaticCode") {
             steps {
