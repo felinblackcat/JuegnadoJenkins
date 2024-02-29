@@ -1,48 +1,46 @@
-pipeline {
-    agent any
-    stages {
-        stage("BuildTesting") {
-            agent { 
-                dockerfile true 
-            }
-            steps {
-                sh "pytest --cov=. --cov-fail-under=90"
-            }
+node {
+    stage("BuildTesting") {
+        agent { 
+            dockerfile true 
         }
-        stage("CheckStaticCode") {
-            steps {
-                echo "Hello, CheckStaticCode!"
-            }
+        steps {
+            sh "pytest --cov=. --cov-fail-under=90"
         }
-        stage("RunUnitaryTest") {
-            steps {
-                echo "Hello, RunUnitaryTest!"
-            }
+    }
+    stage("CheckStaticCode") {
+        steps {
+            echo "Hello, CheckStaticCode!"
         }
-        stage("BuildPreprod") {
-            steps {
-                echo "Hello, BuildPreprod!"
-            }
+    }
+    stage("RunUnitaryTest") {
+        steps {
+            echo "Hello, RunUnitaryTest!"
         }
-        stage("IntegrationTest") {
+    }
+    stage("BuildPreprod") {
+        steps {
+            echo "Hello, BuildPreprod!"
+        }
+    }
+    stage("IntegrationTest") {
         steps {
             echo "Hello, IntegrationTest!"
         }
-        }
-        stage("CheckCVE") {
+    }
+    stage("CheckCVE") {
         steps {
             echo "Hello, CheckCVE!"
         }
-        }
-        stage("SendRegistry") {
+    }
+    stage("SendRegistry") {
         steps {
             echo "Hello, SendRegistry!"
         }
-        }
-        stage("UATDeploy") {
+    }
+    stage("UATDeploy") {
         steps {
             echo "Hello, UAT Deploy!"
         }
-        }
     }
+
 }
