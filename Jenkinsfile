@@ -6,12 +6,7 @@ pipeline {
                 dockerfile true 
             }
             steps {
-                def python_version = sh "python --version"
-            }
-            post {
-                always {
-                    junit 'build/reports/**/*.xml'
-                }
+                sh "pytest --cov=. | grep TOTAL | grep -o '[0-9]\+%'"
             }
         }
         stage("CheckStaticCode") {
