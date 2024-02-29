@@ -6,7 +6,7 @@ pipeline {
                 dockerfile true 
             }
             steps {
-                sh "python --version"
+                python_version = sh "python --version"
             }
         }
         stage("CheckStaticCode") {
