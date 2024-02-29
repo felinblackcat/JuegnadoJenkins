@@ -1,8 +1,5 @@
 node {
     stage("BuildTesting") {
-        agent { 
-            dockerfile true 
-        }
         steps {
             sh "pytest --cov=. --cov-fail-under=90"
         }
