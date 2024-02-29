@@ -1,8 +1,8 @@
 node {
     stage("BuildTesting") {
         def customImage = docker.build("juegnadojenkins:latest")
-        customImage.inside{c->
-            sh(script: "docker run juegnadojenkins pytest --junitxml=./test.xml --cov=. --cov-fail-under=90 | grep TOTAL | awk '{ print \$4 }'", returnStdout: true).trim()
+        customImage.inside{
+            def c = sh(script: "docker run juegnadojenkins pytest --junitxml=./test.xml --cov=. --cov-fail-under=90 | grep TOTAL | awk '{ print \$4 }'", returnStdout: true).trim()
         }
         echo c
     }
