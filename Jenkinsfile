@@ -4,6 +4,7 @@ node {
         customImage.inside {
             sh "pytest --junitxml=./test.xml --cov=. --cov-fail-under=90 | grep TOTAL| awk '{ print \$4 }'"
         }
+        junit './test.xml'
     }
     stage("CheckStaticCode") {
         echo "Hello, CheckStaticCode!"
