@@ -1,8 +1,10 @@
 node {
     stage("BuildTesting") {
         def customImage = docker.build("juegnadojenkins:latest")
-        def coverage = sh(script: "docker run juegnadojenkins pytest --junitxml=./test.xml --cov=. --cov-fail-under=90 | grep TOTAL | awk '{ print \$4 }'", returnStdout: true).trim()
-        echo coverage
+        customImage.inside{c->
+            sh(script: "docker run juegnadojenkins pytest --junitxml=./test.xml --cov=. --cov-fail-under=90 | grep TOTAL | awk '{ print \$4 }'", returnStdout: true).trim()
+        }
+        echo c
     }
     stage("CheckStaticCode") {
         echo "Hello, CheckStaticCode!"
