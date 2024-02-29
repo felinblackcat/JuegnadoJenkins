@@ -1,6 +1,9 @@
 node {
     stage("BuildTesting") {
-        sh ""
+        def customImage = docker.build("JuegnadoJenkins:latest")
+        customImage.inside {
+            sh 'pytest --cov=. --cov-fail-under=90'
+        }
     }
     stage("CheckStaticCode") {
         echo "Hello, CheckStaticCode!"
