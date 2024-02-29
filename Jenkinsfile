@@ -1,7 +1,7 @@
 node {
     stage("BuildTesting") {
         def customImage = docker.build("juegnadojenkins:latest")
-        customImage.inside {
+        customImage.inside {c ->
             sh "pytest --junitxml=./test.xml --cov=. --cov-fail-under=90 | grep TOTAL| awk '{ print \$4 }'"
         }
         
