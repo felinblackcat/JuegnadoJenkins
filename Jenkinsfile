@@ -1,13 +1,14 @@
 node {
     def commited_email = sh(script: "git rev-parse HEAD",  returnStdout: true).trim()
     def commited_hash = sh(script: "git log -1 --format='%ae'",  returnStdout: true).trim()
+    def coverage
     echo commited_email
     echo commited_hash
     stage("BuildTesting") {
         def customImage = docker.build("juegnadojenkins:latest")
-        def coverage = sh(script: "docker run juegnadojenkins pytest --junitxml=./test.xml --cov=. --cov-fail-under=90 | grep TOTAL| awk '{print \$4}' | tr -d %", returnStdout: true).trim()
-        echo coverage
+        coverage = sh(script: "docker run juegnadojenkins pytest --junitxml=./test.xml --cov=. --cov-fail-under=90 | grep TOTAL| awk '{print \$4}' | tr -d %", returnStdout: true).trim()
     }
+    echo coverage
     stage("CheckStaticCode") {
         echo "Hello, CheckStaticCode!"
 
