@@ -6,7 +6,7 @@ pipeline {
                 dockerfile true 
             }
             steps {
-                sh "pytest --cov=. --cov-fail-under=0"
+                sh "pytest --cov=. --cov-fail-under=90"
             }
         }
         stage("CheckStaticCode") {

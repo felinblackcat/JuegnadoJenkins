@@ -7,7 +7,7 @@ app = FastAPI()
 # pytest --cov=. --cov-fail-under=90
 @app.get("/")
 def read_root():
-    return {"Hello": "World"}
+    return {"msg": "Hello World"}
 
 
 @app.get("/items/{item_id}")
