@@ -1,6 +1,6 @@
 node {
     stage("BuildTesting") {
-        def customImage = docker.build("JuegnadoJenkins:latest")
+        def customImage = docker.build("juegnadojenkins:latest")
         customImage.inside {
             sh 'pytest --cov=. --cov-fail-under=90'
         }
