@@ -9,9 +9,10 @@ node {
         customImage.inside {
             sh python --version
         }
-        coverage = sh(script: "docker run juegnadojenkins pytest --junitxml=./test.xml --cov=. --cov-fail-under=90 | grep TOTAL| awk '{print \$4}' | tr -d %", returnStdout: true).trim()
-        sh "ls app"
+        coverage = sh(script: "docker run -w /var/jenkins_home/workspace/CI_CDtest_main --volumes-from 3a8d9b1a5e747074606855f78fa503260006fb9564d4e263bf39c8994a82b0a9 juegnadojenkins pytest --junitxml=./test.xml --cov=. --cov-fail-under=90 | grep TOTAL| awk '{print \$4}' | tr -d %", returnStdout: true).trim()
     }
+    sh "ls /var/jenkins_home/workspace/CI_CDtest_main/"
+    sh "ls /var/jenkins_home/workspace/CI_CDtest_main/app"
     echo coverage
     stage("CheckStaticCode") {
         echo "Hello, CheckStaticCode!"
