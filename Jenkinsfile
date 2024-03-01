@@ -6,6 +6,9 @@ node {
     echo commited_hash
     stage("BuildTesting") {
         def customImage = docker.build("juegnadojenkins:latest")
+        customImage.insise {
+            sh 'ls'
+        }
         coverage = sh(script: "docker run juegnadojenkins pytest --junitxml=testing.xml --cov=. --cov-fail-under=90 | grep TOTAL| awk '{print \$4}' | tr -d %", returnStdout: true).trim()
     }
     echo coverage
